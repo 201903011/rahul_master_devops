@@ -47,11 +47,11 @@ module "s3_bucket" {
 
 
 # # Terraform backend configuration
-# terraform {
-#   backend "s3" {
-#     bucket = module.s3_bucket.bucket_name
-#     key    = "terraform/state.tfstate"
-#     region = "us-east-1a"
-#   }
+terraform {
+  backend "s3" {
+    bucket = module.s3_bucket.bucket_name
+    key    = "terraform/state.tfstate"
+    region = "us-east-1a"
+  }
 
-# }
+}
