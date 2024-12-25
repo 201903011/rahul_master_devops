@@ -42,16 +42,17 @@ module "alb" {
 module "s3_bucket" {
   source      = "./modules/s3_bucket"
   bucket_name = "test-bucket-s3"
+  region      = "us-east-1a"
 }
 
 
 
 # # Terraform backend configuration
-terraform {
-  backend "s3" {
-    bucket = module.s3_bucket.bucket_name
-    key    = "terraform/state.tfstate"
-    region = "us-east-1a"
-  }
+# terraform {
+#   backend "s3" {
+#     bucket = module.s3_bucket.bucket_name
+#     key    = "terraform/state.tfstate"
+#     region = "us-east-1a"
+#   }
 
-}
+# }
