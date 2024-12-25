@@ -12,18 +12,19 @@ module "vpc" {
 module "security_groups" {
   source = "./modules/security_groups"
   vpc_id = module.vpc.vpc_id
-  my_ip  = "YOUR_IP/32"
+  my_ip  = "YOUR_IP/32" # my ip 
 }
 
 module "instances" {
-  source              = "./modules/instances"
-  private_subnet_a_id = module.vpc.private_subnet_a_id
-  private_subnet_b_id = module.vpc.private_subnet_b_id
-  bastion_sg_id       = module.security_groups.bastion_sg_id
-  private_sg_id       = module.security_groups.private_sg_id
-  key_name            = "MyKeyPair"
-  ami_id              = "ami-0abcdef1234567890"
+  source             = "./modules/instances"
+  ami_id             = "ami-12345678" # current AMI ID
+  instance_type      = "t2.micro"
+  public_subnet_a_id = module.vpc.public_subnet_a_id
+  bastion_sg_id      = module.security_groups.bastion_sg_id
+  web_sg_id          = module.security_groups.web_sg_id
+  key_name           = "your-key-name" # current key pair name
 }
+
 
 module "alb" {
   source   = "./modules/alb"
