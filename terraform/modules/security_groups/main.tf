@@ -11,7 +11,7 @@ resource "aws_security_group" "bastion" {
   egress {
     from_port   = 0
     to_port     = 0
-    protocol    = "ALL"
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -25,15 +25,15 @@ resource "aws_security_group" "private" {
 
   ingress {
     from_port   = 0
-    to_port     = 65535
-    protocol    = "ALL"
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
     from_port   = 0
     to_port     = 0
-    protocol    = "ALL"
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -55,7 +55,7 @@ resource "aws_security_group" "web" {
   egress {
     from_port   = 0
     to_port     = 0
-    protocol    = "ALL"
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
