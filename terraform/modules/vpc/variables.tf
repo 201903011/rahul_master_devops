@@ -17,3 +17,7 @@ variable "private_subnet_a_cidr" {
 variable "private_subnet_b_cidr" {
   default = "10.0.4.0/24"
 }
+
+variable "az_zone" {
+  default = "us-east-1"
+}
