@@ -35,7 +35,7 @@ resource "aws_nat_gateway" "nat" {
 resource "aws_subnet" "public_a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.public_subnet_a_cidr
-  availability_zone = var.az_zone
+  availability_zone = var.az_zone_1
 
   tags = {
     Name = "public-subnet-a"
@@ -45,7 +45,7 @@ resource "aws_subnet" "public_a" {
 resource "aws_subnet" "public_b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.public_subnet_b_cidr
-  availability_zone = var.az_zone
+  availability_zone = var.az_zone_2
 
   tags = {
     Name = "public-subnet-b"
@@ -55,7 +55,7 @@ resource "aws_subnet" "public_b" {
 resource "aws_subnet" "private_a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnet_a_cidr
-  availability_zone = var.az_zone
+  availability_zone = var.az_zone_1
 
   tags = {
     Name = "private-subnet-a"
@@ -65,7 +65,7 @@ resource "aws_subnet" "private_a" {
 resource "aws_subnet" "private_b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_subnet_b_cidr
-  availability_zone = var.az_zone
+  availability_zone = var.az_zone_2
 
   tags = {
     Name = "private-subnet-b"
