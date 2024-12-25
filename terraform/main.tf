@@ -42,7 +42,6 @@ module "alb" {
 module "s3_bucket" {
   source      = "./modules/s3_bucket"
   bucket_name = "test-bucket-s3"
-  region      = "us-east-1a"
 }
 
 
