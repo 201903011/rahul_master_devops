@@ -18,7 +18,7 @@ module "security_groups" {
 module "instances" {
   source             = "./modules/instances"
   ami_id             = "ami-12345678" # current AMI ID
-  instance_type      = "t2.micro"
+  instance_type      = "t2.medium"
   public_subnet_a_id = module.vpc.public_subnet_a_id
   bastion_sg_id      = module.security_groups.bastion_sg_id
   web_sg_id          = module.security_groups.web_sg_id
