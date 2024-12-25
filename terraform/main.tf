@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-1a"
 }
 
 module "vpc" {
@@ -49,7 +49,7 @@ module "s3_bucket" {
 #   backend "s3" {
 #     bucket = module.s3_bucket.bucket_name
 #     key    = "terraform/state.tfstate"
-#     region = "us-east-1"
+#     region = "us-east-1a"
 #   }
 
 # }

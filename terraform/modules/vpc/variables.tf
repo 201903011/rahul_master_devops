@@ -19,5 +19,5 @@ variable "private_subnet_b_cidr" {
 }
 
 variable "az_zone" {
-  default = "us-east-1"
+  default = "us-east-1a"
 }
