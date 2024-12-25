@@ -39,7 +39,7 @@ module "alb" {
 # Call the S3 bucket module
 module "s3_bucket" {
   source      = "./modules/s3_bucket"
-  bucket_name = "test_bucket_s3"
+  bucket_name = "test-bucket-s3"
 }
 
 
