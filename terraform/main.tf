@@ -32,3 +32,23 @@ module "alb" {
   sg_id    = module.security_groups.web_sg_id
   alb_name = "app-alb"
 }
+
+
+// s3 code
+
+# Call the S3 bucket module
+module "s3_bucket" {
+  source      = "./modules/s3_bucket"
+  bucket_name = "test_bucket_s3"
+}
+
+
+
+# Terraform backend configuration
+terraform {
+  backend "s3" {
+    bucket = module.s3_bucket.bucket_name
+    key    = "terraform/state.tfstate"
+    region = "us-east-1"
+  }
+}

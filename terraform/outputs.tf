@@ -22,3 +22,7 @@ output "private_sg_id" {
 output "web_sg_id" {
   value = module.security_groups.web_sg_id
 }
+
+output "s3_bucket_name" {
+  value = module.s3_bucket.bucket_name
+}
