@@ -12,17 +12,17 @@ module "vpc" {
 module "security_groups" {
   source = "./modules/security_groups"
   vpc_id = module.vpc.vpc_id
-  my_ip  = "YOUR_IP/32" # my ip 
+  my_ip  = "43.243.83.219/32" # my ip 
 }
 
 module "instances" {
   source             = "./modules/instances"
-  ami_id             = "ami-12345678" # current AMI ID
+  ami_id             = "ami-0e2c8caa4b6378d8c" # current AMI ID
   instance_type      = "t2.medium"
   public_subnet_a_id = module.vpc.public_subnet_a_id
   bastion_sg_id      = module.security_groups.bastion_sg_id
   web_sg_id          = module.security_groups.web_sg_id
-  key_name           = "your-key-name" # current key pair name
+  key_name           = "c51" # current key pair name
 }
 
 
