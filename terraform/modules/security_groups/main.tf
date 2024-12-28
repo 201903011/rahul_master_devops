@@ -1,6 +1,6 @@
 resource "aws_security_group" "bastion" {
   vpc_id = var.vpc_id
-
+  name   = "bastion-sg"
   ingress {
     from_port   = 22
     to_port     = 22
@@ -22,7 +22,7 @@ resource "aws_security_group" "bastion" {
 
 resource "aws_security_group" "private" {
   vpc_id = var.vpc_id
-
+  name   = "private-sg"
   ingress {
     from_port   = 0
     to_port     = 0
@@ -44,7 +44,7 @@ resource "aws_security_group" "private" {
 
 resource "aws_security_group" "web" {
   vpc_id = var.vpc_id
-
+  name   = "web-sg"
   ingress {
     from_port   = 80
     to_port     = 80

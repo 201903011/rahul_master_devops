@@ -8,6 +8,46 @@ resource "aws_vpc" "main" {
   }
 }
 
+resource "aws_subnet" "public_a" {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.public_subnet_a_cidr
+  availability_zone       = var.az_zone_1
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "public-subnet-a"
+  }
+}
+
+resource "aws_subnet" "public_b" {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.public_subnet_b_cidr
+  availability_zone       = var.az_zone_2
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "public-subnet-b"
+  }
+}
+
+resource "aws_subnet" "private_a" {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.private_subnet_a_cidr
+  availability_zone       = var.az_zone_1
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "private-subnet-a"
+  }
+}
+
+resource "aws_subnet" "private_b" {
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.private_subnet_b_cidr
+  availability_zone       = var.az_zone_2
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "private-subnet-b"
+  }
+}
+
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
@@ -32,45 +72,7 @@ resource "aws_nat_gateway" "nat" {
   }
 }
 
-resource "aws_subnet" "public_a" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = var.public_subnet_a_cidr
-  availability_zone = var.az_zone_1
 
-  tags = {
-    Name = "public-subnet-a"
-  }
-}
-
-resource "aws_subnet" "public_b" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = var.public_subnet_b_cidr
-  availability_zone = var.az_zone_2
-
-  tags = {
-    Name = "public-subnet-b"
-  }
-}
-
-resource "aws_subnet" "private_a" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = var.private_subnet_a_cidr
-  availability_zone = var.az_zone_1
-
-  tags = {
-    Name = "private-subnet-a"
-  }
-}
-
-resource "aws_subnet" "private_b" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = var.private_subnet_b_cidr
-  availability_zone = var.az_zone_2
-
-  tags = {
-    Name = "private-subnet-b"
-  }
-}
 
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
@@ -84,6 +86,7 @@ resource "aws_route" "public_internet_access" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.igw.id
+
 }
 
 resource "aws_route_table_association" "public_a" {

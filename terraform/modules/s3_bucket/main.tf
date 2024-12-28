@@ -5,7 +5,7 @@ resource "aws_s3_bucket" "terraform_state" {
 
 
   tags = {
-    Name        = "my-bucket-1234"
+    Name        = "my-bucket-1234eus"
     Environment = "Dev"
   }
 }
