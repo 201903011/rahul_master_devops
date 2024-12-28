@@ -12,9 +12,10 @@ module "vpc" {
 }
 
 module "security_groups" {
-  source = "./modules/security_groups"
-  vpc_id = module.vpc.vpc_id
-  my_ip  = "43.243.83.0/24" # my ip 
+  source         = "./modules/security_groups"
+  vpc_id         = module.vpc.vpc_id
+  my_ip          = "43.243.83.0/24" # my ip 
+  vpc_cidr_block = "10.0.0.0/16"
 }
 
 module "instances" {
