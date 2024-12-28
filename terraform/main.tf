@@ -14,7 +14,7 @@ module "vpc" {
 module "security_groups" {
   source = "./modules/security_groups"
   vpc_id = module.vpc.vpc_id
-  my_ip  = "43.243.83.219/32" # my ip 
+  my_ip  = "43.243.83.219/24" # my ip 
 }
 
 module "instances" {
