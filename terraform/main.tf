@@ -24,7 +24,7 @@ module "instances" {
   public_subnet_a_id = module.vpc.public_subnet_a_id
   bastion_sg_id      = module.security_groups.bastion_sg_id
   web_sg_id          = module.security_groups.web_sg_id
-  key_name           = "c51" # current key pair name
+  key_name           = "rg12" # current key pair name
 }
 
 
