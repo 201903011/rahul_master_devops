@@ -19,13 +19,15 @@ module "security_groups" {
 }
 
 module "instances" {
-  source             = "./modules/instances"
-  ami_id             = "ami-0e2c8caa4b6378d8c" # current AMI ID
-  instance_type      = "t2.medium"
-  public_subnet_a_id = module.vpc.public_subnet_a_id
-  bastion_sg_id      = module.security_groups.bastion_sg_id
-  web_sg_id          = module.security_groups.web_sg_id
-  key_name           = "rg12" # current key pair name
+  source              = "./modules/instances"
+  ami_id              = "ami-0e2c8caa4b6378d8c" # current AMI ID
+  instance_type       = "t2.medium"
+  public_subnet_a_id  = module.vpc.public_subnet_a_id
+  private_subnet_a_id = module.vpc.private_subnet_a_id
+  private_subnet_b_id = module.vpc.private_subnet_b_id
+  bastion_sg_id       = module.security_groups.bastion_sg_id
+  web_sg_id           = module.security_groups.web_sg_id
+  key_name            = "rg12" # current key pair name
 }
 
 

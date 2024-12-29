@@ -14,6 +14,16 @@ variable "public_subnet_a_id" {
   type        = string
 }
 
+variable "private_subnet_a_id" {
+  description = "Public Subnet A ID"
+  type        = string
+}
+
+variable "private_subnet_b_id" {
+  description = "Public Subnet A ID"
+  type        = string
+}
+
 variable "bastion_sg_id" {
   description = "Security Group ID for bastion host"
   type        = string
