@@ -18,7 +18,11 @@ variable "vpc_id" {
   type        = string
 }
 
-# variable "instance_id_jenkins" {
-#   description = "VPC ID where the ALB resides"
-#   type        = string
-# }
+variable "instance_id_jenkins" {
+  description = "VPC ID where the ALB resides"
+  type        = string
+}
+
+variable "alb_arn" {
+  description = "VPC ID where the ALB resides"
+}

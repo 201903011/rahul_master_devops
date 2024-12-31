@@ -8,3 +8,4 @@ resource "aws_lb" "alb" {
     Name = var.alb_name
   }
 }
+
