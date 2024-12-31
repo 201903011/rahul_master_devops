@@ -42,7 +42,7 @@ module "alb" {
 module "tgs" {
   source              = "./modules/tgs"
   alb_name            = module.alb.alb_name
-  subnets             = [module.vpc.private_subnet_a_id, module.vpc.private_subnet_b_id, module.vpc.private_subnet_a_id, module.vpc.private_subnet_b_id]
+  subnets             = [module.vpc.public_subnet_a_id, module.vpc.public_subnet_b_id, module.vpc.private_subnet_a_id, module.vpc.private_subnet_b_id, ]
   sg_id               = module.security_groups.web_sg_id
   vpc_id              = module.vpc.vpc_id
   instance_id_jenkins = module.instances.jenkins_instance_id
