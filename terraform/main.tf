@@ -33,7 +33,7 @@ module "instances" {
 
 module "alb" {
   source   = "./modules/alb"
-  subnets  = [module.vpc.private_subnet_a_id, module.vpc.private_subnet_b_id, module.vpc.private_subnet_a_id, module.vpc.private_subnet_b_id]
+  subnets  = [module.vpc.public_subnet_a_id, module.vpc.public_subnet_b_id, module.vpc.private_subnet_a_id, module.vpc.private_subnet_b_id, ]
   sg_id    = module.security_groups.web_sg_id
   alb_name = "app-alb"
   vpc_id   = module.vpc.vpc_id
