@@ -43,8 +43,12 @@ pipeline {
                         chmod 400 ${PEM_FILE}
                         ssh -i ${PEM_FILE}  ubuntu@${APP_HOST}  
                         <<EOF
+                            aws ecr get-login-password --region us-east-1 |sudo docker login --username AWS --password-stdin ${ECR_REGISTRY}
                             sudo docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} && docker stop $(docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} | awk '{print \$1}') || true
-                            sudo docker run -d -p 80:80 ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+                            sudo docker stop $(sudo docker ps -q)
+                            sudo docker rm $(sudo docker ps -a -q)
+                            sudo docker pull  ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+                            sudo docker run -itd -p 80:80 ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
                             sudo docker ps
                             exit
                         EOF
