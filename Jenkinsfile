@@ -24,7 +24,7 @@ pipeline {
                     echo 'Building Docker Image...'
                     sh '''
                     cd app
-                    sudo aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+                    sudo aws ecr get-login-password --region us-east-1 |sudo docker login --username AWS --password-stdin ${ECR_REGISTRY}
                     sudo docker build -t ${ECR_REPOSITORY}:${IMAGE_TAG} .
                     sudo docker tag ${ECR_REPOSITORY}:${IMAGE_TAG} ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
                     sudo docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
