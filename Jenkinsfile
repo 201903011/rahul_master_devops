@@ -41,8 +41,8 @@ pipeline {
                         sh '''
                         dir
                         chmod 400 ${PEM_FILE}
-                        ssh -i ${PEM_FILE}  ubuntu@${APP_HOST}  
-                        <<EOF
+                        ssh -i ${PEM_FILE}  ubuntu@${APP_HOST} <<EOF
+                            dir
                             aws ecr get-login-password --region us-east-1 |sudo docker login --username AWS --password-stdin ${ECR_REGISTRY}
                             sudo docker stop $(sudo docker ps -q)
                             sudo docker rm $(sudo docker ps -a -q)
