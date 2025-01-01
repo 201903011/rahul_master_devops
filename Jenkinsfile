@@ -40,7 +40,6 @@ pipeline {
                     withCredentials([file(credentialsId: '1b71379b-b6a5-4824-91e9-ae324674ae78', variable: 'PEM_FILE')]) {
                         sh '''
                         dir
-                        PEM_FILE
                         chmod 400 ${PEM_FILE}
                         ssh -i ${PEM_FILE}  root@${APP_HOST}
                         sudo docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} && docker stop $(docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} | awk '{print \$1}') || true
