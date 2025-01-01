@@ -41,10 +41,14 @@ pipeline {
                         sh '''
                         dir
                         chmod 400 ${PEM_FILE}
-                        ssh -i ${PEM_FILE}  ubuntu@${APP_HOST}
-                        sudo docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} && docker stop $(docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} | awk '{print \$1}') || true
-                        sudo docker run -d -p 80:80 ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
-                        "
+                        ssh -i ${PEM_FILE}  ubuntu@${APP_HOST}  
+                        <<EOF
+                            sudo docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} && docker stop $(docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} | awk '{print \$1}') || true
+                            sudo docker run -d -p 80:80 ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+                            sudo docker ps
+                            exit
+                        EOF
+                        
                         '''
                     }
                 }
