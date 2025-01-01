@@ -23,6 +23,11 @@ variable "instance_id_jenkins" {
   type        = string
 }
 
+variable "instance_id_app" {
+  description = "VPC ID where the ALB resides"
+  type        = string
+}
+
 variable "alb_arn" {
   description = "VPC ID where the ALB resides"
 }

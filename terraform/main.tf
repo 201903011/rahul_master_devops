@@ -46,6 +46,7 @@ module "tgs" {
   sg_id               = module.security_groups.web_sg_id
   vpc_id              = module.vpc.vpc_id
   instance_id_jenkins = module.instances.jenkins_instance_id
+  instance_id_app     = module.instances.app_instance_id
   alb_arn             = module.alb.alb_arn
 }
 
