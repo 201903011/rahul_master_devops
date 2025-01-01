@@ -24,10 +24,10 @@ pipeline {
                     echo 'Building Docker Image...'
                     sh '''
                     cd app
-                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ECR_REGISTRY}
-                    docker build -t ${ECR_REPOSITORY}:${IMAGE_TAG} .
-                    docker tag ${ECR_REPOSITORY}:${IMAGE_TAG} ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
-                    docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+                    sudo aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+                    sudo docker build -t ${ECR_REPOSITORY}:${IMAGE_TAG} .
+                    sudo docker tag ${ECR_REPOSITORY}:${IMAGE_TAG} ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+                    sudo docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
                     '''
                 }
             }
@@ -39,9 +39,9 @@ pipeline {
                     echo 'Deploying to App Host...'
                     withCredentials([file(credentialsId: '1b71379b-b6a5-4824-91e9-ae324674ae78', variable: 'PEM_FILE')]) {
                         sh '''
-                        ssh -i ${PEM_FILE} root@${APP_HOST} "
-                            docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} && docker stop $(docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} | awk '{print \$1}') || true
-                            docker run -d -p 80:80 ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+                        sudo ssh -i ${PEM_FILE} root@${APP_HOST} "
+                        sudo docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} && docker stop $(docker ps | grep ${ECR_REGISTRY}/${ECR_REPOSITORY} | awk '{print \$1}') || true
+                        sudo docker run -d -p 80:80 ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
                         "
                         '''
                     }
