@@ -12,7 +12,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Cloning the repository...'
-                git branch: 'main', 
+                git branch: 'master', 
                     credentialsId: '824777fb-b1d6-4a15-a375-ef6a3d331ecf', 
                     url: 'git@github.com:201903011/rahul_master_devops.git'
             }
