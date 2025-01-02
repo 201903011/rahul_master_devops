@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        ECR_REGISTRY = '897540928180.dkr.ecr.us-east-1.amazonaws.com/node-app'
+        ECR_REGISTRY = '897540928180.dkr.ecr.us-east-1.amazonaws.com'
         ECR_REPOSITORY = 'node-app'
         IMAGE_TAG = "${env.BUILD_ID}"
         APP_HOST = '10.0.4.112'
