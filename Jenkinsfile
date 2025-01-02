@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        ECR_REGISTRY = '897540928180.dkr.ecr.us-east-1.amazonaws.com'
+        ECR_REGISTRY = '897540928180.dkr.ecr.us-east-1.amazonaws.com/node-app'
         ECR_REPOSITORY = 'node-app'
         IMAGE_TAG = "${env.BUILD_ID}"
-        APP_HOST = '10.0.4.4'
+        APP_HOST = '10.0.4.112'
     }
 
     stages {
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'Cloning the repository...'
                 git branch: 'master', 
-                    credentialsId: '824777fb-b1d6-4a15-a375-ef6a3d331ecf', 
+                    credentialsId: 'e61abb13-5825-4ba1-abfe-464dfb4210a2', 
                     url: 'git@github.com:201903011/rahul_master_devops.git'
             }
         }
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying to App Host...'
-                    withCredentials([file(credentialsId: '1b71379b-b6a5-4824-91e9-ae324674ae78', variable: 'PEM_FILE')]) {
+                    withCredentials([file(credentialsId: '3efe91f3-5153-4202-8fbe-72a9d961b70d', variable: 'PEM_FILE')]) {
                         sh '''
                         dir
                         chmod 400 ${PEM_FILE}
